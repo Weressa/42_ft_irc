@@ -150,12 +150,16 @@ NB:
 
     NB: connect() is blocking
 
+5. Write/Read data from the server
 
+    int     send(int _fd, const void * _buf, size_t _n, int _flags);
+    int     recv(int _fd, const void * _buf, size_t _n, int _flags);
 
+    //_buf : array of characters containing a message to be transmitted or received
+    //_n : length of the transmitted message / size of buffer
+    //_flags : usually 0
 
-
-
-
+    send() and recv() are blocking returns only after data is sent/ received
 
 
 
