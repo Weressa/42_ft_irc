@@ -195,3 +195,7 @@ NB:
 
 3. Modèle Client-Serveur MQTT
 (https://largo.lip6.fr/trac/sesi-peri/chrome/site/cours/IOC_C06_TCPIP-2p.pdf)
+
+# AI Use:
+1. To briefly explain subjet
+2. To recommand ressources to read and watch
