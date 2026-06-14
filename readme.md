@@ -142,7 +142,7 @@ NB:
     
     To make a connection request just specify the address to Connect to and the socket descriptor
 
-    int     connect(int _fd, const struct sockaddre * _addr, socklen_t _len);
+    int     connect(int _fd, const struct sockaddr * _addr, socklen_t _len);
 
     // _fd : socket descriptor 
     //_addr : the (IP) address and port of the machine.
@@ -161,8 +161,27 @@ NB:
 
     send() and recv() are blocking returns only after data is sent/ received
 
+6. Accept the connection Request
+    The server gets a socket for an incoming client connection by calling accept():
 
+    Transition of the connection request from listen() method to an actual socket. (accept the connection request).
+    After accepting the request, the data can be finally transfered between the nodes.
 
+    int     accept(int _fd, struct sockaddr* _addr, socklen_t* client_addr_len);
+    //return integer the new socket (used for data transfer)
+
+    int main()
+    {
+        int s = accept(server_fd, (struct sockadd*)&client_addr, &_addr_len);
+
+        //server_fd : server socket descriptor;
+        //client_addr : where the address of the connecting socket shall be returned.
+        //client_addr_len : the sizeof(_addr);
+
+        NB: is blocking: waits for connection before returning.
+            dequeues the next connection on the queue for socket (sockid)
+    This function creates a new socket in case of success as the server will become passive, the new socket allows to send to client.
+    }
 
 
 

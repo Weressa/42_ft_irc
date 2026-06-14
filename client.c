@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: assabich <assabich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 21:01:58 by assabich          #+#    #+#             */
-/*   Updated: 2026/06/14 15:10:03 by assabich         ###   ########.fr       */
+/*   Updated: 2026/06/14 17:24:20 by assabich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main ()
     
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_addr.s_addr = inet_addr("127.0.0.1");
-    serverAddress.sin_port = htons(1984);
+    serverAddress.sin_port = htons(4444);
     
     if (connect(clientsockFD, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) == 0)
     {
@@ -61,5 +61,7 @@ int main ()
     recv(clientsockFD, buffer, 1024, 0);
     printf("The received data: %s\n", buffer);
     
+    //5. close socket
+    close(clientsockFD);
     return (0);
 }
