@@ -6,7 +6,7 @@
 /*   By: assabich <assabich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 21:01:58 by assabich          #+#    #+#             */
-/*   Updated: 2026/06/13 21:16:10 by assabich         ###   ########.fr       */
+/*   Updated: 2026/06/14 15:10:03 by assabich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,24 @@ int main ()
     serverAddress.sin_addr.s_addr = inet_addr("127.0.0.1");
     serverAddress.sin_port = htons(1984);
     
-    if (connect(clientsockFD, (struct sockaddr)&serverAddress, sizeof(serverAddress)) == 0)
+    if (connect(clientsockFD, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) == 0)
     {
-        printf("connected successfulyy.\n");
+        printf("connected successfully.\n");
     }
     else
     {
         printf("Failed to connect.\n");
         exit(1);
     }
+    
     //3. send data to the server
-    
+    char buffer[1024] = "Hello, I am Assewer\n";
+    send (clientsockFD, buffer, strlen(buffer), 0);
+
     //4. receive data from the server
+    memset(buffer, 0, 1024);
+    recv(clientsockFD, buffer, 1024, 0);
+    printf("The received data: %s\n", buffer);
     
+    return (0);
 }
